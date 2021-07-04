@@ -34,9 +34,16 @@ class Phrase {
       return this.phrase.includes(letter);
     }
 
+    /**
+     * @param {string} letter - Letter on the button that was clicked
+     * Checks the button that was clicked to see if there are matches for the phrase.
+     * If there is it shows that Letter of the phrase. 
+     */
     showMatchedLetter(letter) {
-        const corretLetter = document.getElementsByClassName(letter);
-        correctLetter.forEach((letter) => letter.classList.replace('hide', 'show'));
+        const correctLetter = document.getElementsByClassName(letter);
+        for(let i = 0; i < correctLetter.length; i++) {
+            correctLetter[i].classList.replace('hide', 'show');
+        }
     }
 
 }
