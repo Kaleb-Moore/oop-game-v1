@@ -10,9 +10,9 @@ class Phrase {
     /**
      * Display phrase on game board
      */
-    addPhraseToDisplay(phrase) {
+    addPhraseToDisplay() {
         const displayPhrase = document.querySelector('#phrase ul');
-        let letters = phrase.phrase.split('');
+        let letters = this.phrase.split('');
         letters.forEach((letter) => {
             if(letter === ' '){
                 displayPhrase.insertAdjacentHTML('beforeend', `
@@ -24,6 +24,19 @@ class Phrase {
                 `);
             }
         });
+    }
+
+    /**
+     * @param {string} letter - letter to check 
+     * @returns {boolean} true - if the letter is in the string
+     */
+    checkLetter(letter) {
+      return this.phrase.includes(letter);
+    }
+
+    showMatchedLetter(letter) {
+        const corretLetter = document.getElementsByClassName(letter);
+        correctLetter.forEach((letter) => letter.classList.replace('hide', 'show'));
     }
 
 }

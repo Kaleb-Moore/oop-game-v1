@@ -14,39 +14,55 @@ class Game {
     * @return {array} An array of phrases that could be used in the game
     */
     createPhrases() {
-        let phraseList = [];
-        phraseList.push(new Phrase('I know'));
-        phraseList.push(new Phrase('Winner Winner Chicken Dinner'));
-        phraseList.push(new Phrase('You got games on your phone'));
-        phraseList.push(new Phrase('STOP I almost dropped my croissant'));
-        phraseList.push(new Phrase('Ogers are like onions'));
+        let phraseList = [
+            new Phrase('I know'),
+            new Phrase('Winner Winner Chicken Dinner'),
+            new Phrase('You got games on your phone'),
+            new Phrase('STOP I almost dropped my croissant'),
+            new Phrase('Ogers are like onions')
+        ];
 
         return phraseList;
     };
-
-    get randomPhrase() {
-        return this.getRandomPhrase();
-    }
 
     /**
     * Selects random phrase from phrases property
     * @return {Object} Phrase object chosen to be used
     */
     getRandomPhrase() {
-        const randomPhrase = Math.floor(Math.random() * this.phrases.length);
-        return this.phrases[randomPhrase];
+        return this.phrases[Math.floor(Math.random() * this.phrases.length)];
     }
 
     /**
     * Begins game by selecting a random phrase and displaying it to user
     */
     startGame() {
-        const overlay = document.getElementById('overlay');
-        const startBtn = document.getElementById('btn__reset');
-        startBtn.addEventListener('click', e => { 
-            overlay.style.display = 'none';
-        });
-        this.activePhrase = this.randomPhrase;
-        this.randomPhrase.addPhraseToDisplay(this.activePhrase);
+        document.getElementById('overlay').style.display = 'none';
+        let randomPhrase = this.getRandomPhrase();
+        this.activePhrase = randomPhrase;
+        randomPhrase.addPhraseToDisplay();
     };
+
+    handleInteraction(button) {
+        button.disabled = true;
+        const clicked = button.textContent;
+
+        if(this.activePhrase.checkLetter(clicked)){
+            button.classList.add('chosen');
+            this.activePhrase.showMatchedLetter(clicked);
+            if(this.checkForWin()) {
+                this.gameOver('win');
+            }
+        } else {
+            button.classList.add('wrong');
+            this.removeLife()
+        }
+
+    }
+
+    removeLife() {}
+
+    checkForWin() {}
+
+    gameOver() {}
 }
