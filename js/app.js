@@ -20,3 +20,10 @@ document.getElementById('qwerty').addEventListener('click', e => {
         game.handleInteraction(e.target)
     }
 });
+
+document.addEventListener('keyup', e => {
+    if(e.textContent) {
+        game.handleInteraction(e.textContent)
+    }
+
+});
