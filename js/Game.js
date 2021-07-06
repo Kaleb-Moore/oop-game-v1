@@ -15,11 +15,11 @@ class Game {
     */
     createPhrases() {
         let phraseList = [
-            new Phrase('I know'),
-            new Phrase('Winner Winner Chicken Dinner'),
-            new Phrase('You got games on your phone'),
-            new Phrase('STOP I almost dropped my croissant'),
-            new Phrase('Ogers are like onions')
+            new Phrase('Zelda'),
+            new Phrase('Link'),
+            new Phrase('Chosen one'),
+            new Phrase('Master Sword'),
+            new Phrase('Defeat Ganon')
         ];
 
         return phraseList;
@@ -44,7 +44,6 @@ class Game {
         let randomPhrase = this.getRandomPhrase();
         this.activePhrase = randomPhrase;
         randomPhrase.addPhraseToDisplay();
-
     };
 
     /**
@@ -109,7 +108,17 @@ class Game {
         overlay.style.display = 'flex';
         overlay.classList.add(winLoss);
 
-        document.getElementById('game-over-message').innerHTML = `You ${winLoss}`;
+        const gameOver = document.getElementById('game-over-message');
+        gameOver.innerHTML = `You ${winLoss}`;
+        gameOver.style.color = '#000000'
+
+        if(winLoss === 'win') {
+            overlay.style.backgroundImage = "url('images/Win\ background.jpg')";
+        } 
+        if(winLoss === 'lose') {
+            overlay.style.backgroundImage = "url('images/Loss\ background.jpg')";
+        }
+
 
         document.querySelector('#phrase ul').innerHTML = '';
         const buttons = document.querySelectorAll('button');
@@ -117,6 +126,7 @@ class Game {
             buttons[i].removeAttribute('disabled');
             buttons[i].classList.remove('chosen')
             buttons[i].classList.remove('wrong')
+            buttons[i].disabled = false;
         }
         const hearts = document.querySelectorAll('ol img');
         for (let i = 0; i < hearts.length; i++) {
