@@ -110,13 +110,18 @@ class Game {
 
         const gameOver = document.getElementById('game-over-message');
         gameOver.innerHTML = `You ${winLoss}`;
-        gameOver.style.color = '#000000'
+        const title = document.querySelector('h2');
+
 
         if(winLoss === 'win') {
             overlay.style.backgroundImage = "url('images/Win\ background.jpg')";
+            title.style.color = "#000000";
+            gameOver.style.color = '#000000';
         } 
         if(winLoss === 'lose') {
             overlay.style.backgroundImage = "url('images/Loss\ background.jpg')";
+            title.style.color = "#FFFFFF";
+            gameOver.style.color = '#FFFFFF';
         }
 
 

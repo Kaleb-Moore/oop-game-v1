@@ -16,10 +16,10 @@ const keys = document.getElementsByClassName('key');
  overlay.style.backgroundImage = "url('images/Start\ background.jpg')";
  overlay.style.backgroundRepeat = 'no-repeat';
  overlay.style.backgroundPosition = 'center';
- 
+
  const title = document.querySelector('h2');
  title.style.color = "#000000";
-
+ 
 /**
  * Calls game start
  * Handles keyup listener only when the overlay isn't showing
